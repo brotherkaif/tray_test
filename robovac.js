@@ -8,13 +8,13 @@ function init() {
 function processInput(message) {
   inputArray = message.split("\n");
   gridSize = inputArray[0].split(' ').map(x => parseInt(x, 10));
+  robotPosition = inputArray[1].split(' ').map(x => parseInt(x, 10));
 }
 
 let inputArray;
-let gridSize
+let gridSize;
+let robotPosition;
 init();
 
-// Get initial grid size from inputArray[0]
-// Get robot position from inputArray[1]
 // Get the direction from inputArray[inputArray.length-1]
 // Get dirty tiles from inputArray[2]..inputArray[inputArray.length-1]
