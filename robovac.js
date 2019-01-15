@@ -6,12 +6,12 @@ function init() {
 }
 
 function processInput(message) {
-  inputString = message;
   inputArray = message.split("\n");
+  gridSize = inputArray[0].split(' ').map(x => parseInt(x, 10));
 }
 
-let inputString;
 let inputArray;
+let gridSize
 init();
 
 // Get initial grid size from inputArray[0]
