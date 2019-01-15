@@ -1,31 +1,21 @@
-// function init() {
-//   fetch('input.txt')
-//   .then(response => response.text())
-//   .then(text => processInput(text))
-//   .catch(err => console.log(err));
-// }
+function loadInput() {
+  return "5 5\n1 2\n1 0\n2 2\n2 3\nNNESEESWNWW"
+}
 
-// const init = async () => {
-//   const response = await fetch('input.txt');
-//   const text = await response.text();
-//   processInput(text);
-// }
+function processInput(input) {
 
-function processInput() {
-
-  text = "5 5\n1 2\n1 0\n2 2\n2 3\nNNESEESWNWW"
   // Convert string into an array for easier processing
-  let inputArray = text.split("\n");
-
+  let inputArray = input.split("\n");
+  
   // Get grid size
   gridSize = inputArray[0].split(' ').map(x => parseInt(x, 10));
-
+  
   // Get robot position
   robotPosition = inputArray[1].split(' ').map(x => parseInt(x, 10));
-
+  
   // Build array of dirty tiles
   dirtyTiles = inputArray.slice(2, inputArray.length - 1);
-
+  
   // Get the path the robot will take
   robotRoute = inputArray[inputArray.length - 1].split('');
 }
@@ -35,27 +25,27 @@ function moveBot(direction) {
   // Also check if robot is currently at edge
   switch(direction) {
     case "N":
-      if (robotPosition[1] < (gridSize[1] - 1)) {
-        robotPosition[1] += 1;
-      }
-      break;
+    if (robotPosition[1] < (gridSize[1] - 1)) {
+      robotPosition[1] += 1;
+    }
+    break;
     case "E":
-      if (robotPosition[0] > 0) {
-        robotPosition[0] -= 1;
-      }
-      break;
+    if (robotPosition[0] > 0) {
+      robotPosition[0] -= 1;
+    }
+    break;
     case "S":
-      if (robotPosition[1] > 0) {
-        robotPosition[1] -= 1;
-      }
-      break;
+    if (robotPosition[1] > 0) {
+      robotPosition[1] -= 1;
+    }
+    break;
     case "W":
-      if (robotPosition[0] < (gridSize[0] - 1)) {
-        robotPosition[0] += 1;
-      }
-      break; 
+    if (robotPosition[0] < (gridSize[0] - 1)) {
+      robotPosition[0] += 1;
+    }
+    break; 
     default:
-      console.log(`${direction} is not a valid direction`);
+    console.log(`${direction} is not a valid direction`);
   }
 }
 
@@ -72,19 +62,19 @@ function calculateCleaned(routeTaken, dirtyTiles) {
       }
     });
   });
-
+  
   return tilesCleaned;
 }
 
 function runBot() {
   let routeTaken = [];
-
+  
   routeTaken.push(robotPosition.join(" "));
   robotRoute.forEach((direction) => {
     moveBot(direction);
     routeTaken.push(robotPosition.join(" "));
   });
-
+  
   return routeTaken;
 }
 
@@ -92,8 +82,9 @@ let gridSize;
 let robotPosition;
 let dirtyTiles;
 let robotRoute;
+let input = loadInput();
+processInput(input);
 
-processInput();
 let routeTaken = runBot();
 
 // Final output as per spec
