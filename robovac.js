@@ -6,15 +6,24 @@ function init() {
 }
 
 function processInput(message) {
-  inputArray = message.split("\n");
+  // Convert string into an array for easier processing
+  let inputArray = message.split("\n");
+
+  // Get grid size
   gridSize = inputArray[0].split(' ').map(x => parseInt(x, 10));
+
+  // Get robot position
   robotPosition = inputArray[1].split(' ').map(x => parseInt(x, 10));
+
+  // Build array of dirty tiles
+  dirtyTiles = inputArray.slice(2, inputArray.length - 2);
+  dirtyTiles = dirtyTiles.map((x) => x.split(' '));
+  dirtyTiles = dirtyTiles.map(arr => arr.map(x => parseInt(x, 10)));
 }
 
-let inputArray;
 let gridSize;
 let robotPosition;
+let dirtyTiles;
 init();
 
 // Get the direction from inputArray[inputArray.length-1]
-// Get dirty tiles from inputArray[2]..inputArray[inputArray.length-1]
