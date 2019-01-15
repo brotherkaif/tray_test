@@ -1,8 +1,19 @@
+// function init() {
+//   fetch('input.txt')
+//   .then(response => response.text())
+//   .then(text => processInput(text))
+//   .catch(err => console.log(err));
+// }
+
+// const init = async () => {
+//   const response = await fetch('input.txt');
+//   const text = await response.text();
+//   processInput(text);
+// }
+
 function init() {
-  fetch('input.txt')
-  .then(response => response.text())
-  .then(text => processInput(text))
-  .catch(err => console.log(err));
+  text = "5 5\n1 2\n1 0\n2 2\n2 3\nNNESEESWNWW"
+  processInput(text);
 }
 
 function processInput(message) {
@@ -24,8 +35,49 @@ function processInput(message) {
   robotPath = inputArray[inputArray.length - 1].split('');
 }
 
+function moveBot(direction) {
+  // Take a direction and move the bot accordingly
+  // Also check for if robot is currently at edge
+  switch(direction) {
+    case "N":
+      console.log("got north");
+      if (robotPosition[1] < (gridSize[1] - 1)) {
+        robotPosition[1] += 1;
+      }
+      console.log(robotPosition);
+      break;
+    case "E":
+      console.log("got east");
+      if (robotPosition[0] > 0) {
+        robotPosition[0] -= 1;
+      }
+      console.log(robotPosition);
+      break;
+    case "S":
+      console.log("got south");
+      if (robotPosition[1] > 0) {
+        robotPosition[1] -= 1;
+      }
+      console.log(robotPosition);
+      break;
+    case "W":
+      console.log("got west");
+      if (robotPosition[0] < (gridSize[0] - 1)) {
+        robotPosition[0] += 1;
+      }
+      console.log(robotPosition);
+      break; 
+    default:
+      console.log(`${direction} is not a valid direction`);
+      // code block
+  }
+}
+
 let gridSize;
 let robotPosition;
 let dirtyTiles;
 let robotPath;
+
 init();
+console.log(robotPosition);
+robotPath.forEach(direction => moveBot(direction));
