@@ -19,11 +19,13 @@ function processInput(message) {
   dirtyTiles = inputArray.slice(2, inputArray.length - 2);
   dirtyTiles = dirtyTiles.map((x) => x.split(' '));
   dirtyTiles = dirtyTiles.map(arr => arr.map(x => parseInt(x, 10)));
+
+  // Get the path the robot will take
+  robotPath = inputArray[inputArray.length - 1].split('');
 }
 
 let gridSize;
 let robotPosition;
 let dirtyTiles;
+let robotPath;
 init();
-
-// Get the direction from inputArray[inputArray.length-1]
